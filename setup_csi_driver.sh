@@ -1,0 +1,33 @@
+#!/bin/bash
+# WARNING: This script outlines the manual steps to install a custom CSI-enabled Wi-Fi driver.
+# NOTE ON AX201: The Intel AX201 is a CNVi module, which makes it notoriously harder to patch 
+# than the PCIe-based AX200. Proceed with caution.
+
+echo "========================================================================="
+echo "                 W I - F I   D R I V E R   W A R N I N G                 "
+echo "========================================================================="
+echo "Installing a custom CSI driver (like FeitCSI or PicoScenes iwlwifi patch)"
+echo "will REPLACE your current Intel Wi-Fi driver. "
+echo ""
+echo "WHAT THIS BREAKS:"
+echo "1. Your regular Wi-Fi internet connection may drop or become unstable."
+echo "2. Standard pentesting tools (aircrack-ng, wifite) may stop working on wlan0"
+echo "   if the custom driver breaks standard monitor mode/packet injection."
+echo ""
+echo "REVERT COMMAND (if you lose internet):"
+echo "  sudo modprobe -r iwlwifi && sudo modprobe iwlwifi"
+echo "  (Or simply reboot your machine to load the default kernel modules)"
+echo "========================================================================="
+echo ""
+echo "To proceed, you must manually compile the driver. Due to kernel version "
+echo "mismatches on Kali Linux, automated installation is unsafe."
+echo ""
+echo "Recommended Tools for AX200/AX201:"
+echo "1. FeitCSI (https://feitcsi.kuskosoft.com/)"
+echo "2. PicoScenes (https://tns.thss.tsinghua.edu.cn/wst/)"
+echo ""
+echo "Please visit those pages on a separate device, download the patches for your"
+echo "specific kernel version (\`uname -r\`), and compile them using 'make'."
+echo ""
+echo "Once you have captured a .pcap file with CSI data using those tools, you can"
+echo "visualize it using the python scripts in this directory."
