@@ -1,0 +1,6 @@
+*.iso
+*.deb
+venv/
+__pycache__/
+*.pcap
+FeitCSI/
